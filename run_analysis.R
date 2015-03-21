@@ -13,10 +13,10 @@ features <- read.table("./features.txt", quote="\"")
 #removing confusing and extra characters like the parenthesis...
 features$V2 <- gsub("[()]", "",tolower(features$V2))
 # ... and the commas, dashes, etc. This I decided to do upfront so when I will read the raw data set, I can
-# assign meaningful column names to it at the beginning stage
+# assign meaningful column names to it at the beginning stage.
 features$V2 <- gsub("[..]|[,]|[-]", ".",features$V2)
 
-# Reading the X, Y, and subject data sets
+# Reading the X, Y, and subject data sets.
 test_X <- read.table("./test/x_test.txt", quote="\"",col.names = features$V2)
 test_Y <- read.table("./test/y_test.txt", quote="\"",col.names = "act.label")
 subj_test <- read.table("./test/subject_test.txt", quote="\"",col.names = "subject")
@@ -24,7 +24,7 @@ train_X <- read.table("./train/x_train.txt", quote="\"",col.names = features$V2)
 train_Y <- read.table("./train/y_train.txt", quote="\"",col.names = "act.label")
 subj_train <- read.table("./train/subject_train.txt", quote="\"",col.names = "subject")
 
-# Combining the X datasets to form a base dataset with 10,299 rows and 561 columns
+# Combining the X datasets to form a base dataset with 10,299 rows and 561 columns.
 comb_X <- rbind(test_X, train_X)
 # Selecting only those columns that contain 'mean' and 'std' data
 comb_X <- comb_X[,grep("mean|std", colnames(comb_X))]
